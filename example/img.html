@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>图片预览</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      max-width: 100%;
+    }
+    .blank {
+      position: absolute;
+      width: 100%;
+      height:100%;
+      top:0;
+      left: 0;
+      opacity: 0.5;
+      background: black;
+      z-index: 700;
+    }
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height:100%;
+      top:0;
+      left: 0;
+      /*text-align: center;*/
+      opacity: 1;
+      z-index: 800;
+    }
+    .overlay img {
+      position: absolute;
+      top: 50%;
+      left:50%;
+      transform: translate(-50%,-50%);
+
+    }
+    .fullHeight{
+      height:100%;
+    }
+    .fullWidth{
+      width:100%;
+    }
+  </style>
+</head>
+<body>
+<!--<div id="blank"></div>-->
+<!--<div id="overlay"></div>-->
+<div id="parent">
+  <img src="../asserts/img/1.jpg" alt="" >
+  <img src="../asserts/img/3.jpg" alt="" >
+  <img src="../asserts/img/17.jpg" alt="" >
+</div>
+<script type="text/javascript">
+  // 创建 2 个 div 节点,也可以直接写在 html
+  var blankEl = document.createElement('div')
+  blankEl.setAttribute('id','blank');
+  document.body.appendChild(blankEl)
+  var overlayEl = document.createElement('div')
+  overlayEl.setAttribute('id','overlay');
+  document.body.appendChild(overlayEl)
+  //  为页面中所有的 img 元素添加 click 事件
+
+  document.getElementById('parent').addEventListener('click',function(e){
+    if (e.target && e.target.nodeName.toUpperCase() === 'IMG') {
+      var src = e.target.attributes
+      var img = new Image()
+      img.src = src[0].textContent
+      showOverlay(img)
+
+    }
+  }, false)
+  document.getElementById('overlay').addEventListener('click',function(e){
+    hideOverlay()
+  }, false)
+  function showOverlay (img) {
+    var el = document.getElementById('overlay')
+//    el.style.position = 'absolute'
+    el.classList.add('overlay')
+    var blank = document.getElementById('blank')
+    blank.classList.add('blank');
+    if (img.height /img.width >1.2) {
+      el.innerHTML = '<img class="fullHeight" src='+img.src+'>'
+    } else {
+      el.innerHTML = '<img class="fullWidth" src='+img.src+'>'
+    }
+
+  }
+  function hideOverlay () {
+    // remove classList
+    var blank = document.getElementById('blank')
+    blank.classList.remove('blank');
+    var el = document.getElementById('overlay')
+    el.classList.remove('overlay')
+    // remove node
+    var childNode = document.querySelector('#overlay img')
+    el.removeChild(childNode)
+  }
+//  showImg()
+</script>
+</body>
+</html>
