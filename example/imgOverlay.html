@@ -31,6 +31,7 @@
       /*text-align: center;*/
       opacity: 1;
       z-index: 800;
+      cursor: pointer;
     }
     .overlay img {
       position: absolute;
@@ -51,9 +52,9 @@
 <!--<div id="blank"></div>-->
 <!--<div id="overlay"></div>-->
 <div id="parent">
-  <img src="../asserts/img/1.jpg" alt="" >
-  <img src="../asserts/img/3.jpg" alt="" >
-  <img src="../asserts/img/17.jpg" alt="" >
+  <img src="../asserts/img/1.jpg" alt=""  style="cursor: zoom-in">
+  <img src="../asserts/img/3.jpg" alt="" style="cursor: zoom-in">
+  <img src="../asserts/img/17.jpg" alt="" style="cursor: zoom-in">
 </div>
 <script type="text/javascript">
   // 创建 2 个 div 节点,也可以直接写在 html
@@ -69,8 +70,8 @@
     if (e.target && e.target.nodeName.toUpperCase() === 'IMG') {
       var src = e.target.attributes
       var img = new Image()
-      img.src = src[0].textContent
-      showOverlay(img)
+      imgOverlay.src = src[0].textContent
+      showOverlay(imgOverlay)
 
     }
   }, false)
@@ -83,10 +84,10 @@
     el.classList.add('overlay')
     var blank = document.getElementById('blank')
     blank.classList.add('blank');
-    if (img.height /img.width >1.2) {
-      el.innerHTML = '<img class="fullHeight" src='+img.src+'>'
+    if (imgOverlay.height /imgOverlay.width >1.2) {
+      el.innerHTML = '<img style="cursor: zoom-out" class="fullHeight" src='+imgOverlay.src+'>'
     } else {
-      el.innerHTML = '<img class="fullWidth" src='+img.src+'>'
+      el.innerHTML = '<img style="cursor: zoom-out" class="fullWidth" src='+imgOverlay.src+'>'
     }
 
   }
@@ -100,7 +101,8 @@
     var childNode = document.querySelector('#overlay img')
     el.removeChild(childNode)
   }
-//  showImg()
+//  1. 在图片区域显示放大镜效果,参考清单的实现效果  CSS cursor
+//  2. 触摸屏支持
 </script>
 </body>
 </html>

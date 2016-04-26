@@ -75,6 +75,9 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
 3. 轮滑 swipe
 
 
+包括功能实现,和动画的过度效果
+
+
 #### overlay
 
  2个 div,一个 blank ,一个 overlay
