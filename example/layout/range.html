@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>range</title>
+</head>
+<body>
+<input type="range" id="myRange" value="90">
+<button onclick="myFunction()">Try it</button>
+<p id="demo"></p>
+<script>
+  function myFunction () {
+    var x = document.getElementById("myRange").value
+    document.getElementById("demo").innerHTML = x
+  }
+  var el = document.getElementById('myRange')
+  el.addEventListener('change', function () {
+    document.getElementById('demo').textContent = el.value
+  }, false)
+</script>
+</body>
+</html>

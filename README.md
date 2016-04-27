@@ -72,11 +72,15 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
 
 3. 瀑布流 waterfall
 
-3. 轮滑 swipe
+4. 轮滑 swipe
 
+5. 分页  -- [如何写一个简单的分页](http://web.jobbole.com/85405/) 
+
+6. mvvm [利用 JavaScript 数据绑定实现一个简单的 MVVM 库](https://segmentfault.com/a/1190000004847657)
 
 包括功能实现,和动画的过度效果
 
+7. 懒加载
 
 #### overlay
 
