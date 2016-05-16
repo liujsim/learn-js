@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title></title>
+    <style type="text/css">
+    .audioplayer {
+        width: 100px;
+        height: 40px;
+        border: solid;
+    }
+
+    .play {
+        height: 40px;
+        width: 40px;
+        border: none;
+        background: url('img/play.png');
+        background-size: 40px 40px;
+    }
+    </style>
+</head>
+
+<body>
+    <p> audio load http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3</p>
+    <p>目标：可重用 </p>
+    <div class="audioplayer">
+        <button class="play" id="pButton"></button>
+        <audio class="audioplay" id="music">
+        <source src="http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3" type="audio/mp3" id="play">
+    </audio>
+    </div>
+
+    <script type="text/javascript">
+    // function load() {
+    //     var el = document.getElementById('play')
+    //     el.setAttribute('src', 'http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3')
+
+    // }
+    // load()
+    // var els = document.getElementsByClassName('audioplay')
+    // Array.prototype.forEach.call(els, function(element, index) {
+    //     element.load()
+    // })
+
+    var music = document.getElementById('music'); // id for audio element
+    var pButton = document.getElementById('pButton'); // play button
+    var toggle = 0
+    pButton.addEventListener("click", function() {
+        if (toggle == 0) {
+            console.log('play')
+            music.play()
+            toggle = 1
+        } else {
+            music.pause()
+            toggle = 0
+        }
+    }, false);
+    </script>
+</body>
+
+</html>

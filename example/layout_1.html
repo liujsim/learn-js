@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>头尾固定中间高度自适应布局</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+    }
+
+    #header {
+      height: 100px;
+      line-height: 100px;
+      background: aqua;
+      width: 100%;
+      position: absolute;
+      /*z-index: 5;*/
+      top: 0;
+      text-align: center;
+    }
+
+    #container {
+      background: mediumaquamarine;
+      width: 100%;
+      overflow: auto;
+      top: 100px;
+      position: absolute;
+      /*z-index: 10;*/
+      bottom: 100px;
+    }
+
+    .mycontent {
+      padding: 20px;
+    }
+
+    #footer {
+      height: 100px;
+      line-height: 100px;
+      background: antiquewhite;
+      width: 100%;
+      position: absolute;
+      /*z-index: 200;*/
+      bottom: 0;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+<div id="header">固定头部100px;
+  <button class="btn">获得 scroll top offset</button>
+</div>
+<div id="container">
+  <!--mycontent 产生了滚动条,当前元素的scrollTop 为0 -->
+  <div class="mycontent"> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br> 中间自适应部分
+    <br>
+  </div>
+</div>
+<div id="footer">
+  固定尾部100px
+</div>
+<script>
+  var el = document.getElementById('container')
+  //var el =document.querySelector('.mycontent')
+  var btn = document.querySelector('.btn')
+  btn.addEventListener('click', function () {
+    console.log(el.scrollTop)   // 滚动条的位置,距离父元素
+    console.log(el.offsetTop)  // 它返回当前元素相对于其 offsetParent 元素的顶部的距离
+  }, false)
+
+  var touchStart
+  el.addEventListener('touchstart', function () {
+    var touch = event.targetTouches[0];
+    // 把元素放在手指所在的位置
+    touchStart = touch.pageY;
+//    touchStart = touch.clientY;
+//    console.log(touchStart);
+
+  }, false)
+  var touchmove
+  var originTop =parseInt((getComputedStyle(el)['top']).replace('px',''))
+  el.addEventListener('touchmove', function () {
+    var touch = event.targetTouches[0];
+    // 把元素放在手指所在的位置
+    touchmove = touch.pageY;
+    if(el.scrollTop == 0){
+      var distance = touchmove - touchStart
+      console.log(distance)
+
+      el.style.top = originTop  + distance +'px';
+      console.log(el.style.top)
+    }
+//    touchStart = touch.clientY;
+//      console.log(touchmove);
+  }, false)
+
+</script>
+</body>
+
+</html>
