@@ -2,21 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>range</title>
+  <style>
+    .range-slider__range {
+      -webkit-appearance: none;
+      width: calc(100% - (73px));
+      height: 10px;
+      border-radius: 5px;
+      background: #d7dcdf;
+      outline: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .range-slider__range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #2c3e50;
+      cursor: pointer;
+      -webkit-transition: background .15s ease-in-out;
+      transition: background .15s ease-in-out;
+    }
+
+    .range-slider__range::-webkit-slider-thumb:hover {
+      background: #1abc9c;
+    }
+
+    .range-slider__range:active::-webkit-slider-thumb {
+      background: #1abc9c;
+    }
+
+    .small {
+      font-size: 14px;
+    }
+
+    .normal {
+      font-size: 16px;
+    }
+
+    .large {
+      font-size: 20px;
+    }
+
+    .larger {
+      font-size: 26px;
+    }
+
+    .largest {
+      font-size: 30px;
+    }
+  </style>
 </head>
 <body>
-<input type="range" id="myRange" value="90">
-<button onclick="myFunction()">Try it</button>
+<h3>调整滑块改变文字大小</h3>
+<input type="range" id="myRange" class="range-slider__range" value="25" step="25">
 <p id="demo"></p>
+<p id="content">
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aperiam aspernatur eos eum ex harum hic id ipsum iste
+  laborum magnam molestiae nemo, perspiciatis recusandae repellat reprehenderit ullam vel vitae.
+</p>
 <script>
-  function myFunction () {
-    var x = document.getElementById("myRange").value
-    document.getElementById("demo").innerHTML = x
+  var mapObj = {
+    0:'14',
+    25:'16',
+    50:'20',
+    75:'26',
+    100:'30'
   }
   var el = document.getElementById('myRange')
+  var content = document.getElementById('content')
   el.addEventListener('change', function () {
     document.getElementById('demo').textContent = el.value
+    switch (el.value) {
+      case '0':
+        content.style.fontSize = mapObj[0] + 'px'
+        localStorage.setItem('fontSize', 0);
+        break
+      case '25':
+        content.style.fontSize = mapObj[25] + 'px'
+        localStorage.setItem('fontSize', 25);
+        break
+      case '50':
+        content.style.fontSize = mapObj[50] + 'px'
+        localStorage.setItem('fontSize', 50);
+        break
+      case '75':
+        content.style.fontSize = mapObj[75] + 'px'
+        localStorage.setItem('fontSize', 75);
+        break
+      case '100':
+        content.style.fontSize = mapObj[100] + 'px'
+        localStorage.setItem('fontSize', 100);
+        break
+    }
   }, false)
+  function initValue () {
+    document.getElementById('demo').textContent = el.value
+    var fontSize = localStorage.getItem('fontSize')
+    if (fontSize) {
+      document.getElementById('content').style.fontSize = mapObj[fontSize] + 'px'
+      document.getElementById('myRange').value = fontSize
+      document.getElementById('demo').textContent = fontSize
+    }
+  }
+  initValue()
 </script>
 </body>
 </html>

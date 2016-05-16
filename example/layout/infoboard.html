@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>在线客服 board</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    *{
+      margin:0;
+      padding: 0;
+    }
+    .test {
+      height: 600px;
+      width: 100%;
+      background: antiquewhite;
+      z-index: 999;
+    }
+
+    #setting .item {
+      margin-top: 20px;
+      float: left;
+      width: 33.33%;
+      height: 150px;
+      text-align: center;
+      /*border: 1px solid black;*/
+    }
+    .item-content{
+      margin: 0 auto;
+      height:50px;
+      width: 50px;
+      border: 1px solid white;
+      border-radius: 5px;
+      background: white url(../../asserts/icon/resize.png) no-repeat center center;
+      background-size: 50% 70%;
+    }
+    .item p {
+      font-size: 12px;
+    }
+
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    .modal-content{
+      background-color: #fefefe;
+    }
+    .modal-body {padding: 2px 16px;}
+
+    .modal-body  span {
+      display: inline-block;
+      width: 40%;
+      text-align: center;
+      border: 1px solid black;
+    }
+    .modal-body .left{
+      position: absolute;
+      left: 5px;
+    }
+    .modal-body .right{
+      position: absolute;
+      right: 5px ;
+    }
+  </style>
+</head>
+<body>
+<div id="setting" class="test">
+  <div>
+    <div class="item" id="font-setting">
+      <div class="item-content" id="resize"></div>
+      <p>调整字体</p>
+    </div>
+    <!--<div class="item">2</div>-->
+    <!--<div class="item">3</div>-->
+  </div>
+</div>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+
+    <div class="modal-body">
+      <span class="left">小</span>
+      <span class="right">大</span>
+    </div>
+  </div>
+
+</div>
+<script>
+  var modal = document.getElementById('myModal');
+  var el = document.getElementById('resize')
+  el.addEventListener('click', function (e) {
+//    console.log('调整字体')
+    modal.style.display = "block";
+  }, false)
+
+  window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+  }
+</script>
+</body>
+</html>

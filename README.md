@@ -60,6 +60,10 @@ a[]() 函数中的 i 始终保持了对外部变量 i 的引用，此时循环�
 
 ### component
 
+**设计原则参考 http://ant.design/docs/spec/introduce**
+
+参照 vux 的组件图 ![vux](https://raw.githubusercontent.com/airyland/vux/master/assets/components.png)
+
 使用 JS 开发 web 常用的组件，从实现最初的的完成功能 demo,最终目的 API 友好，可重用的组件
 
 兼容性 IE 10 +，移动端友好
@@ -80,7 +84,31 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
 
 包括功能实现,和动画的过度效果
 
-7. 懒加载
+7. 懒加载  [图片延迟加载简单实现](http://yangxiaofu.com/2015/11/20/%E5%9B%BE%E7%89%87%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/)
+
+8. 自动完成   [awesomplete](https://github.com/LeaVerou/awesomplete)
+
+9. commonjs 和 amd 实现   https://github.com/xiaofuzi/commonJS   amd 规范: lodJS  和雨夜带刀的 seed.js
+
+10. 省市级联 https://github.com/cnluzhang/chinaddress
+
+11. 下拉刷新   
+    http://apeatling.com/javascript-pull-to-refresh-web/
+    * touchStart,touchMove touchEnd 记录下拉的距离,到达阈值后,向后台请求数据,然后 append
+    * 注意下拉刷新的长度  touchStart 
+    
+12. 底部自动加载下一页  
+
+```
+    $(window).scroll(function() {
+        if ($(document).scrollTop() + $(window).height() > $(document).height() - 100) {
+            $.get(url, function(data) {
+                $('#list').append(data);
+            });
+        }
+    });
+```
+
 
 #### overlay
 
@@ -88,6 +116,10 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
  
  blank 和 overlay 都全屏,bank 设置 background 和 opacity ,z-index ,作为底层,overlay 作为上层(z-index 控制)显示元素,
 
+
+#### model 实现
+
+功能:点击一个元素,弹出一个对话框,有关闭按钮,有一个遮罩
 
 #### example
 

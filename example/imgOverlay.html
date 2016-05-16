@@ -62,6 +62,7 @@
   <img src="../asserts/img/1.jpg" alt="" style="cursor: zoom-in">
   <img src="../asserts/img/3.jpg" alt="" style="cursor: zoom-in">
   <img src="../asserts/img/17.jpg" alt="" style="cursor: zoom-in">
+   <!-- 经过测试,支持 base64 图片-->
 </div>
 <script type="text/javascript">
   // 创建 2 个 div 节点,也可以直接写在 html
@@ -77,8 +78,8 @@
     if (e.target && e.target.nodeName.toUpperCase() === 'IMG') {
       var src = e.target.attributes
       var img = new Image()
-      imgOverlay.src = src[0].textContent
-      showOverlay(imgOverlay)
+      img.src = src[0].textContent  // 和 img 标签中 src 顺序有关
+      showOverlay(img)
 
     }
   }, false)
@@ -91,10 +92,10 @@
     el.classList.add('overlay')
     var blank = document.getElementById('blank')
     blank.classList.add('blank');
-    if (imgOverlay.height / imgOverlay.width > 1.2) {
-      el.innerHTML = '<img style="cursor: zoom-out" class="fullHeight" src=' + imgOverlay.src + '>'
+    if (el.height / el.width > 1.2) {
+      el.innerHTML = '<img style="cursor: zoom-out" class="fullHeight" src=' + img.src + '>'
     } else {
-      el.innerHTML = '<img style="cursor: zoom-out" class="fullWidth" src=' + imgOverlay.src + '>'
+      el.innerHTML = '<img style="cursor: zoom-out" class="fullWidth" src=' + img.src + '>'
     }
 
   }

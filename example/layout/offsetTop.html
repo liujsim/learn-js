@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title></title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <style type="text/css">
+    #div1 {
+      height: 111px;
+      background: azure;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div id="div1"></div>
+  <span id="topPos"></span>
+</div>
+<script>
+  var d = document.getElementById("div1");
+  var topPos;
+  d.addEventListener('touchmove', function (e) {
+    console.log('hello')
+    topPos = d.offsetTop;
+    console.log(topPos)   // 即时在移动端浏览器向下滚动产生白色空间时一直为 0  注意是只读属性
+    console.log(d.scrollTop)
+    var touch = event.targetTouches[0];
+    console.log('scroll.offsetTop ' + scroll.offsetTop)
+    console.log('scrollHeight='+ d.scrollHeight)  // 最小值是 el 元素的高度 d.clientHeight
+    console.log('clientHeight='+ d.clientHeight)  // 最小值是 el 元素的高度 d.clientHeight
+    console.log(d.style.top)
+    document.getElementById('topPos').textContent = topPos
+  }, false)
+</script>
+</body>
+</html>
