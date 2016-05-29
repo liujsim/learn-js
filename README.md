@@ -121,6 +121,11 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
 
 功能:点击一个元素,弹出一个对话框,有关闭按钮,有一个遮罩
 
+
+#### accordion(手风琴)和collapsible(可折叠)
+
+accordion只能同时展开一个条目，而collapsible可以展开多个条目
+
 #### example
 
 为验证功能的原始 demo

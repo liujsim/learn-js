@@ -12,6 +12,12 @@
 
 示例 : https://dl.dropboxusercontent.com/u/26978903/scrollz/mobile.html
 
+https://apeatling.com/demos/web-ptr/
+
+pull-to-refresh    --> release-to-refresh  --> refreshing...
+
+
+检测触摸屏幕的手指何时改变方向: orientationchange 
 
 知识点
 1. 滚动条的位置 滚动条到父元素的位置
@@ -23,9 +29,21 @@
 当一个元素的容器没有产生垂直方向的滚动条,那它的 scrollTop 的值默认为0
 
 
-scrollTop 不为 0 时,正常下拉看本地的最新数据,为 0 时,继续下拉,此时记录下拉距离,超过阈值,提示 释放刷新,手指释放,此时从服务端取数据
+scrollTop 不为 0 时,正常下拉看本地的最新数据,为 0 时,继续下拉,此时记录下拉距离,超过阈值,提示 释放刷新,手指释放,
+此时从服务端取数据
 
 2. 计算 touchMove 距离
 
 touch.pageY  
 touch.clientY  
+
+3. TouchEvent.touches
+
+   TouchEvent.targetTouches
+
+注意偏移坐标单位,如果移动端使用 rem 作为布局单位应该如何处理
+
+
+不能用top，这样效率很低，建议采用CSS3，在拖拽的时候判断拖拽情况使用 transform 的 translate3d 或者 translateY
+ （使用3d触发GPU渲染效率好），拖拽结束后判断和初始状态的情况，使用 transition 完成页面平滑过度。建议找些案例的
+ JS来看。

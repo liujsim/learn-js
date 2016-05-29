@@ -80,7 +80,7 @@
       var img = new Image()
       img.src = src[0].textContent  // 和 img 标签中 src 顺序有关
       showOverlay(img)
-
+      console.log('bind')
     }
   }, false)
   document.getElementById('overlay').addEventListener('click', function (e) {

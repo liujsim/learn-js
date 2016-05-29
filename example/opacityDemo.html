@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>透明 DIV</title>
+  <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+    }
+    body{
+
+    }
+    .box{
+      position: absolute;
+      left:0px;
+      top:0px;
+      width: 150px;
+      height: 150px;
+      background:RGBA(117, 117, 117, 0.7)  url(./img/voice.png) no-repeat center center;
+      background-size: 50px 50px;
+      /*opacity: 0.5;*/
+    }
+    .box .notice{
+      font-size: 11px;
+      position: absolute;
+      bottom: 2px;
+      color: #ffffff;
+      left: 50%;
+      transform: translateX(-50%); /*修正顶点位置*/
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+这个是一个透明的 div
+<div class="box"><span class="notice">手指上滑, 取消发送</span></div>
+</body>
+</html>

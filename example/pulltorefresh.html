@@ -4,14 +4,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
   <title>头尾固定中间高度自适应布局</title>
+  <script src="vconsole.min.js"></script>
   <style>
     html,
     body {
       height: 100%;
       margin: 0;
       padding: 0;
-      font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+      font-family: "PingFangSC-Regular", "San Francisco", "Helvetica Neue", Helvetica, sans-serif;
+      -webkit-overflow-scrolling: touch;
     }
 
     #header {
@@ -19,16 +22,24 @@
       line-height: 100px;
       background: aqua;
       width: 100%;
-      position: absolute;
+      position: fixed;
       /*z-index: 5;*/
       top: 0;
+      text-align: center;
+    }
+
+    #loader {
+      height: 100px;
+      width: 100%;
+      top: 100px;
+      position: absolute;
       text-align: center;
     }
 
     #container {
       background: mediumaquamarine;
       width: 100%;
-      overflow: auto;
+      overflow: scroll; /* auto 和 scroll 的区别 */
       top: 100px;
       position: absolute;
       /*z-index: 10;*/
@@ -44,10 +55,14 @@
       line-height: 100px;
       background: antiquewhite;
       width: 100%;
-      position: absolute;
+      position: fixed;
       /*z-index: 200;*/
       bottom: 0;
       text-align: center;
+    }
+
+    .hide {
+      display: none;
     }
   </style>
 </head>
@@ -55,6 +70,9 @@
 <body>
 <div id="header">固定头部100px;
   <button class="btn">获得 scroll top offset</button>
+</div>
+<div id="loader">
+  <span id="loader-notice"> pull-to-refresh </span>
 </div>
 <div id="container">
   <!--mycontent 产生了滚动条,当前元素的scrollTop 为0 -->
@@ -117,29 +135,51 @@
   var touchStart
   el.addEventListener('touchstart', function () {
     var touch = event.targetTouches[0];
-    // 把元素放在手指所在的位置
+    // 把元素放在手指所在的位置i
     touchStart = touch.pageY;
 //    touchStart = touch.clientY;
 //    console.log(touchStart);
 
   }, false)
   var touchmove
-  var originTop =parseInt((getComputedStyle(el)['top']).replace('px',''))
-  el.addEventListener('touchmove', function () {
+  var distance;
+  var loaderNotice = document.querySelector('#loader-notice')
+  var originTop = parseInt((getComputedStyle(el)['top']).replace('px', ''))
+  el.addEventListener('touchmove', function (event) {
     var touch = event.targetTouches[0];
     // 把元素放在手指所在的位置
     touchmove = touch.pageY;
-    if(el.scrollTop == 0){
-      var distance = touchmove - touchStart
-      console.log(distance)
+    if (el.scrollTop == 0) {
+      distance = touchmove - touchStart;
+//      console.log(distance)
+      if (distance > 70) {  // 假设100是阈值   distance 最大为 100
 
-      el.style.top = originTop  + distance +'px';
-      console.log(el.style.top)
+        loaderNotice.textContent = "release-to-refresh"
+        event.preventDefault()   // 超过阈值后,禁止向下无线滑动
+//        console.log('到达阈值')
+      } else {
+        el.style.top = originTop + distance + 'px';  // 修改 container
+//        console.log(el.style.top)
+      }
     }
 //    touchStart = touch.clientY;
 //      console.log(touchmove);
   }, false)
 
+  el.addEventListener('touchend', function (event) {
+    console.log('touchend')
+    if (distance > 70) {   // touchend 时是阈值则从后台取数据
+      setTimeout(function () {
+        el.style.top = originTop + 'px'   // 可以添加动画效果
+        loaderNotice.textContent = "pull-to-refresh "
+      }, 1500)
+      loaderNotice.textContent = "正在刷新..."   // dom 线程
+    } else {
+      el.style.top = originTop + 'px'
+    }
+  }, false)
+
+  // 移动端适配
 </script>
 </body>
 

@@ -2,62 +2,156 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title></title>
-    <style type="text/css">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title></title>
+  <style type="text/css">
     .audioplayer {
-        width: 100px;
-        height: 40px;
-        border: solid;
+      width: 100px;
+      height: 40px;
+      border: solid;
     }
 
     .play {
-        height: 40px;
-        width: 40px;
-        border: none;
-        background: url('img/play.png');
-        background-size: 40px 40px;
+      height: 40px;
+      width: 40px;
+      border: none;
+      background: transparent url('img/audio/icon_audio_unread26f1f1.png') no-repeat center center;
+      background-size: 18px auto;
+      display: inline-block;
+      vertical-align: middle;
     }
-    </style>
+    .time {
+      height: 40px;
+      width: 40px;
+      border: none;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 40px;
+    }
+    .pause {
+      height: 40px;
+      width: 40px;
+      border: none;
+      background: transparent url('img/audio/icon_audio_unread26f1f1.png') no-repeat center center;
+      background-size: 18px auto;
+      background-color: transparent;
+      -webkit-animation: audio_playing 1s infinite;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    @-webkit-keyframes audio_playing {
+      30% {
+        background-image: url(./img/audio/icon_audio_reading_126f1f1.png)
+      }
+      31% {
+        background-image: url(./img/audio/icon_audio_reading_226f1f1.png)
+      }
+      61% {
+        background-image: url(./img/audio/icon_audio_reading_226f1f1.png)
+      }
+      62% {
+        background-image: url(./img/audio/icon_audio_reading_326f1f1.png)
+      }
+      100% {
+        background-image: url(./img/audio/icon_audio_reading_326f1f1.png)
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <p> audio load http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3</p>
-    <p>目标：可重用 </p>
+<p> audio load http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3</p>
+<p>目标：可重用 </p>
+<ul id="info">
+  <li>layout_1.html
     <div class="audioplayer">
-        <button class="play" id="pButton"></button>
-        <audio class="audioplay" id="music">
-        <source src="http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3" type="audio/mp3" id="play">
-    </audio>
+      <i class="play"></i>
+      <i class="time"></i>
+      <audio class="audioplay">
+        <source src="./img/test1.mp3" class="source" type="audio/mp3">
+      </audio>
     </div>
+  </li>
+  <li>
+    <div class="audioplayer">
+      <i class="play"></i>
+      <i class="time"></i>
+      <audio class="audioplay">
+        <source src="./img/test2.mp3" type="audio/mp3">
+      </audio>
+    </div>
+  </li>
+</ul>
 
-    <script type="text/javascript">
-    // function load() {
-    //     var el = document.getElementById('play')
-    //     el.setAttribute('src', 'http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3')
 
-    // }
-    // load()
-    // var els = document.getElementsByClassName('audioplay')
-    // Array.prototype.forEach.call(els, function(element, index) {
-    //     element.load()
-    // })
+<p>第二个</p>
 
-    var music = document.getElementById('music'); // id for audio element
-    var pButton = document.getElementById('pButton'); // play button
-    var toggle = 0
-    pButton.addEventListener("click", function() {
-        if (toggle == 0) {
-            console.log('play')
-            music.play()
-            toggle = 1
-        } else {
-            music.pause()
-            toggle = 0
-        }
-    }, false);
-    </script>
+
+<script type="text/javascript">
+  // function load() {
+  //     var el = document.getElementById('play')
+  //     el.setAttribute('src', 'http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3')
+
+  // }
+  // load()
+  // var els = document.getElementsByClassName('audioplay')
+  // Array.prototype.forEach.call(els, function(element, index) {
+  //     element.load()
+  // })
+
+
+  // 使用委托的形式添加,根据 className 判断,然后在控制台添加一个 li 节点,判断是否有效
+
+  var info = document.getElementById('info')
+  info.addEventListener('click', function (event) {
+//    console.log(event.target.nextElementSibling)
+//    console.log(event.target['click'])
+//    console.log(event.target.className)
+//    console.log(event.target.classList)
+//    console.log(event.target.classList.value)
+    if (event.target && ( event.target.className == 'play' || event.target && event.target.className == 'pause')) {
+      var el = event.target.nextElementSibling.nextElementSibling
+      if (event.target.classList.value == 'play') {
+//            console.log('play')
+        event.target.classList.add('pause')
+        event.target.classList.remove('play')
+        el.play()
+      } else {
+//            console.log('pause')
+        event.target.classList.add('play')
+        event.target.classList.remove('pause')
+        el.pause()
+      }
+
+    }
+//    console.log(event.target.classList.value=='audioplayer')
+  }, false)
+
+  // 添加时间
+  var els = document.querySelectorAll('.audioplay')
+
+  Array.prototype.forEach.call(els,function(element,index){
+    element.addEventListener('canplaythrough',function(){
+      var time = element.duration
+      element.previousElementSibling.textContent= Math.ceil(time)
+    })
+    element.addEventListener('timeupdate',function(){
+      if(element.currentTime === element.duration){
+        var playButton = element.previousElementSibling.previousElementSibling
+        playButton.classList.add('play')
+        playButton.classList.remove('pause')
+        element.pause()
+      }
+    })
+  })
+</script>
 </body>
 
 </html>
