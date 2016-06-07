@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>auto 跳转</title>
+    <style type="text/css">
+      button{
+        height: 50px;
+        font-size: 18px;
+        width: 100px;
+        border: 1px solid #1fb764;
+      }
+    </style>
+</head>
+
+
+<body>
+    <button onclick="javascript:history.go(-1)">返回</button>
+    <script type="text/javascript">
+    setTimeout(function() {
+        history.go(-1)
+    }, 1500)
+    </script>
+</body>
+
+</html>

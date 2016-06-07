@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes"/>
   <title>头尾固定中间高度自适应布局</title>
-  <script src="vconsole.min.js"></script>
   <style>
     html,
     body {
@@ -151,9 +150,12 @@
     touchmove = touch.pageY;
     if (el.scrollTop == 0) {
       distance = touchmove - touchStart;
+      console.log(distance)
 //      console.log(distance)
+      if(distance>0 ){
+        event.preventDefault() // 兼容 4.4 非常重要 多次测试
+      }
       if (distance > 70) {  // 假设100是阈值   distance 最大为 100
-
         loaderNotice.textContent = "release-to-refresh"
         event.preventDefault()   // 超过阈值后,禁止向下无线滑动
 //        console.log('到达阈值')
