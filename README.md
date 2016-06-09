@@ -78,7 +78,7 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
 
 4. 轮滑 swipe
 
-5. 分页  -- [如何写一个简单的分页](http://web.jobbole.com/85405/) 
+5. 分页  -- [如何写一个简单的分页](http://web.jobbole.com/85405/)
 
 6. mvvm [利用 JavaScript 数据绑定实现一个简单的 MVVM 库](https://segmentfault.com/a/1190000004847657)
 
@@ -92,12 +92,12 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
 
 10. 省市级联 https://github.com/cnluzhang/chinaddress
 
-11. 下拉刷新   
+11. 下拉刷新
     http://apeatling.com/javascript-pull-to-refresh-web/
     * touchStart,touchMove touchEnd 记录下拉的距离,到达阈值后,向后台请求数据,然后 append
-    * 注意下拉刷新的长度  touchStart 
-    
-12. 底部自动加载下一页  
+    * 注意下拉刷新的长度  touchStart
+
+12. 底部自动加载下一页
 
 ```
     $(window).scroll(function() {
@@ -113,7 +113,7 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
 #### overlay
 
  2个 div,一个 blank ,一个 overlay
- 
+
  blank 和 overlay 都全屏,bank 设置 background 和 opacity ,z-index ,作为底层,overlay 作为上层(z-index 控制)显示元素,
 
 

@@ -69,13 +69,15 @@
 <body>
 <p> audio load http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3</p>
 <p>目标：可重用 </p>
+<button onclick="addAudio()">add audio</button>
 <ul id="info">
-  <li>layout_1.html
+  <li>
     <div class="audioplayer">
       <i class="play"></i>
       <i class="time"></i>
       <audio class="audioplay">
         <source src="./img/test1.mp3" class="source" type="audio/mp3">
+        <!--<source src="http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3" class="source" type="audio/mp3">-->
       </audio>
     </div>
   </li>
@@ -151,6 +153,52 @@
       }
     })
   })
+
+  function addAudio(){
+//    console.log('hello')
+    var el = document.getElementById('info')
+    el.insertAdjacentHTML('beforeend','  <li> <div class="audioplayer"> <i class="play"></i> <i class="time"></i> <audio class="audioplay"> <source src="./img/test1.mp3" class="source" type="audio/mp3"> <!--<source src="http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3" class="source" type="audio/mp3">--> </audio> </div> </li>')
+  }
+
+  var MutationObserver = window.MutationObserver
+  var observer = new MutationObserver(callback);
+  function  callback(){
+    // 为新增加的节点添加事件
+    console.log('dom 更新了')
+    els = document.querySelectorAll('.audioplay')
+    Array.prototype.forEach.call(els,function(element,index){
+      function bindcanplaythrough(){
+        var time = element.duration
+        console.log(time)
+        element.previousElementSibling.textContent= Math.ceil(time)
+      }
+      function bindtimeupdate (){
+        console.log('timeupdate')
+        if(element.currentTime === element.duration){
+          var playButton = element.previousElementSibling.previousElementSibling
+          playButton.classList.add('play')
+          playButton.classList.remove('pause')
+          element.pause()
+        }
+      }
+      element.removeEventListener('canplaythrough',bindcanplaythrough)
+      element.addEventListener('canplaythrough',bindcanplaythrough)
+      element.removeEventListener('timeupdate',bindtimeupdate)
+      element.addEventListener('timeupdate',bindtimeupdate)
+    })
+  }
+  var  options = {
+    'childList': true,
+    'attributes':true
+  }
+  observer.observe(info, options);
+
+
+  // test canplaythrough
+  var testel = document.querySelector('.audioplay')
+  testel.oncanplaythrough = function() {
+//    alert("Can play through video without stopping");
+  };
 </script>
 </body>
 
