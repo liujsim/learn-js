@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>uiblock</title>
+</head>
+
+<body>
+    <h3>验证js 是否阻塞 UI (5秒后出现界面)</h3>
+    <button> 修改</button>
+    <span id="info">hello</span>
+    <script type="text/javascript">
+    // alert('ok')  // 去掉会如何
+    var start = new Date()
+    var el = document.getElementById('info')
+    debugger
+    el.innerHTML = 'hello world'
+    while (new Date() - start < 5000) {}
+    </script>
+</body>
+
+</html>

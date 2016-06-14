@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>callback </title>
+</head>
+<body>
+<h3>callback hell</h3>
+<script>
+      // 1. 异步编程之回调函数
+    function f12(num) {
+      console.log('1. 异步编程之回调函数')
+      console.log(num + 1)
+      return num + 1;
+    }
+    function f11(arr, callback) {  // f11 是一个很耗时的
+      var total = arr.reduce(function(a, b, index, arr) {
+        return a + b
+      })
+      return callback && callback(total)
+    }
+    f11([1,2,3,4,5], f12)
+</script>
+</body>
+</html>

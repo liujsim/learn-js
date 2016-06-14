@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Title</title>
+</head>
+<body>
+<button onclick="addInfo()">add</button>
+<ul id="info">
+  <li onclick="test(event)">123</li>
+  <li onclick="test(event)">123</li>
+  <li onclick="test(event)">123</li>
+</ul>
+<script>
+  // 为新增加的元素绑定事件
+  var el = document.getElementById('info')
+  function addInfo(){
+    var el = document.getElementById('info')
+    // 支持原生 JS 添加事件
+    el.insertAdjacentHTML('beforeend',' <li onclick="test()">123</li>')
+  }
+  function test(){
+    console.log(event.target)
+    alert('ok')
+    console.log(event.target)
+  }
+</script>
+</body>
+</html>

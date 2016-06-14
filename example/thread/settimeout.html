@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<h3> setTimeout 异步的缺陷 http://zqianduan.com/2016/03/08/js-async-principle/ 查看控制台 </h3>
+<script type="text/javascript">
+  // 输出 2 1
+  setTimeout(function(){
+    console.log(1)
+  },0)
+  console.log(2) // 因为只有在执行完第二行以后，系统才会去执行"任务队列"中的回调函数。
+</script>
+</body>
+</html>

@@ -41,7 +41,6 @@
       display: inline-block;
       vertical-align: middle;
     }
-
     li {
       margin-bottom: 10px;
     }
@@ -64,77 +63,46 @@
       }
     }
   </style>
+  <script src="vconsole.min.js"></script>
 </head>
 
 <body>
-<p> audio load http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3</p>
-<p>目标：可重用   支持 desktop ,不支持 mobile</p>
+<p>目标：可重用,兼容 iOS </p>
 <button onclick="addAudio()">add audio</button>
 <ul id="info">
   <li>
     <div class="audioplayer">
-      <i class="play"></i>
+      <i onclick="play(event)" class="play"></i>
       <i class="time"></i>
-      <audio class="audioplay">
-        <source src="./img/test1.mp3" class="source" type="audio/mp3">
-        <!--<source src="http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3" class="source" type="audio/mp3">-->
+      <audio class="audioplay" autoplay  preload="none">
+        <source src="./img/test1.mp3" class="source" type="audio/mp3" codecs="mp3">
       </audio>
     </div>
   </li>
   <li>
     <div class="audioplayer">
-      <i class="play"></i>
+      <i onclick="play(event)" class="play"></i>
       <i class="time"></i>
-      <audio class="audioplay">
+      <audio class="audioplay" autoplay  preload="auto">
         <source src="./img/test2.mp3" type="audio/mp3">
       </audio>
     </div>
   </li>
 </ul>
 
-
-<p>第二个</p>
-
-
 <script type="text/javascript">
-  // function load() {
-  //     var el = document.getElementById('play')
-  //     el.setAttribute('src', 'http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3')
-
-  // }
-  // load()
-  // var els = document.getElementsByClassName('audioplay')
-  // Array.prototype.forEach.call(els, function(element, index) {
-  //     element.load()
-  // })
-
-
-  // 使用委托的形式添加,根据 className 判断,然后在控制台添加一个 li 节点,判断是否有效
-
-  var info = document.getElementById('info')
-  info.addEventListener('click', function (event) {
-//    console.log(event.target.nextElementSibling)
-//    console.log(event.target['click'])
-//    console.log(event.target.className)
-//    console.log(event.target.classList)
-//    console.log(event.target.classList.value)
-    if (event.target && ( event.target.className == 'play' || event.target && event.target.className == 'pause')) {
-      var el = event.target.nextElementSibling.nextElementSibling
-      if (event.target.className == 'play') {
-//            console.log('play')
-        event.target.classList.add('pause')
-        event.target.classList.remove('play')
-        el.play()
-      } else {
-//            console.log('pause')
-        event.target.classList.add('play')
-        event.target.classList.remove('pause')
-        el.pause()
-      }
-
+  function play(event){
+    var el = event.target.nextElementSibling.nextElementSibling
+    if (event.target.className == 'play') {
+      event.target.classList.add('pause')
+      event.target.classList.remove('play')
+      el.play()
+    } else {
+      event.target.classList.add('play')
+      event.target.classList.remove('pause')
+      el.pause()
     }
-//    console.log(event.target.classList.value=='audioplayer')
-  }, false)
+  }
 
   // 添加时间
   var els = document.querySelectorAll('.audioplay')
@@ -142,9 +110,11 @@
   Array.prototype.forEach.call(els,function(element,index){
     element.addEventListener('canplaythrough',function(){
       var time = element.duration
+      console.log(element.duration)
       element.previousElementSibling.textContent= Math.ceil(time)
     })
     element.addEventListener('timeupdate',function(){
+      console.log(element.duration)
       if(element.currentTime === element.duration){
         var playButton = element.previousElementSibling.previousElementSibling
         playButton.classList.add('play')
@@ -155,9 +125,8 @@
   })
 
   function addAudio(){
-//    console.log('hello')
     var el = document.getElementById('info')
-    el.insertAdjacentHTML('beforeend','  <li> <div class="audioplayer"> <i class="play"></i> <i class="time"></i> <audio class="audioplay"> <source src="./img/test1.mp3" class="source" type="audio/mp3"> <!--<source src="http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3" class="source" type="audio/mp3">--> </audio> </div> </li>')
+    el.insertAdjacentHTML('beforeend','  <li> <div class="audioplayer"> <i class="play" onclick="play(event)"></i> <i class="time"></i> <audio class="audioplay" autoplay> <source src="./img/test1.mp3" class="source" type="audio/mp3"> <!--<source src="http://fdfs.xmcdn.com/group9/M07/95/31/wKgDYlY7_9DzDKIwAAcTVNSve_k086.mp3" class="source" type="audio/mp3">--> </audio> </div> </li>')
   }
 
   var MutationObserver = window.MutationObserver
@@ -173,7 +142,7 @@
         element.previousElementSibling.textContent= Math.ceil(time)
       }
       function bindtimeupdate (){
-        console.log('timeupdate')
+        console.log(element.duration)
         if(element.currentTime === element.duration){
           var playButton = element.previousElementSibling.previousElementSibling
           playButton.classList.add('play')

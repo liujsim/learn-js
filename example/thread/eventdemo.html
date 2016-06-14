@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>button</title>
+</head>
+
+<body>
+    <button id='button'>阻塞点击</button>
+    <script type="text/javascript">
+    // 点击按钮 5s 后才会生效
+    var start = new Date()
+    var btn = document.getElementById('button')
+    btn.onclick = function() {
+        alert('点击了')
+    }
+    while (new Date() - start < 5000) {
+    }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>模拟轮询</title>
+</head>
+<body>
+<script type="text/javascript">
+localStorage.setItem('ok','')
+  function sleep(delay){
+     alert( delay + '秒钟之后点一下确定' );
+     localStorage.setItem('ok','This is OK')
+  }
+  // 10s 秒后设置值
+  setTimeout(function(){
+    localStorage.setItem('ok','This is OK')
+  },2000)
+
+  // 定时检查去取数据
+  var count = 0;
+  var getData = setInterval(function(){
+    var data = localStorage.getItem('ok')
+    if(data == ''){
+      count++
+      data = localStorage.getItem('ok')
+    }else{
+      console.log(count)
+      clearInterval(getData)
+      localStorage.setItem('ok','')
+      console.log(data)
+    }
+  },200)
+</script>
+</body>
+</html>

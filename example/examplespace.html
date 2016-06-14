@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>example space</title>
+  <style type="text/css">
+    span{
+      display: inline-block;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+<h4>保留换行和空格  注意空格 &amp;nbsp; 中的 &amp; 被转义了 </h4>
+<br>
+&lt;div&gt; %content% &lt;/div&gt;
+<br>
+  <span id="content"></span>
+  <script type="text/javascript">
+//    var obj = '       '
+    var obj = '%content%'
+    var el = document.getElementById('content')
+     el.textContent = obj.replace(/ /gi, "&nbsp;")  // &amp;nbsp;
+//    el.textContent = obj.replace(/ /gi, " &amp;nbsp;")
+  </script>
+</body>
+</html>
