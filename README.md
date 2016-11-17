@@ -86,6 +86,10 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
 
 7. 懒加载  [图片延迟加载简单实现](http://yangxiaofu.com/2015/11/20/%E5%9B%BE%E7%89%87%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/)
 
+   [实现一个图片懒加载插件有多难？](https://segmentfault.com/a/1190000004656348)
+
+    https://github.com/barretlee/lazyload
+
 8. 自动完成   [awesomplete](https://github.com/LeaVerou/awesomplete)
 
 9. commonjs 和 amd 实现   https://github.com/xiaofuzi/commonJS   amd 规范: lodJS  和雨夜带刀的 seed.js
@@ -109,6 +113,11 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
     });
 ```
 
+13. js 模块化工具 https://segmentfault.com/a/1190000005621376
+
+14. 简单的js异步文件加载器 https://segmentfault.com/a/1190000004227850
+
+15. [怎么更好的理解虚拟DOM?](https://www.zhihu.com/question/29504639)
 
 #### overlay
 
@@ -122,9 +131,17 @@ alert confirm toast popup  ToolTip Checkbox  分页  树 自动完成
 功能:点击一个元素,弹出一个对话框,有关闭按钮,有一个遮罩
 
 
-#### accordion(手风琴)和collapsible(可折叠)
+#### collapsible(可折叠)
 
-accordion只能同时展开一个条目，而collapsible可以展开多个条目
+collapsible可以展开多个条目
+
+#### 表单美化
+
+[Magic-check](http://forsigner.com/magic-check/)
+
+#### datepicker
+
+支持移动端的 datepicker
 
 #### example
 

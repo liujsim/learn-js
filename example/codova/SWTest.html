@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <title>anychat测试</title>
+    </head>
+    <body>
+        <div class="app">
+            <div id="deviceready" class="blink">
+                <p><button type="button" onclick="connect()">连接服务器</button></p>
+                <p><button type="button" onclick="login()">登录服务器</button></p>
+                <p><button type="button" onclick="enter()">进入房间</button></p>
+                <p><button type="button" onclick="leave()">退出房间</button></p>
+                
+            </div>
+            
+        </div>
+        <script type="text/javascript" charset="utf-8"> </script>
+        
+        <script type="text/javascript" src="cordova.js"> </script>
+        <script type="text/javascript">
+        
+        
+        function connect(){
+            
+            var params={};
+            params['action']            = "connectOnAnyChat";
+            params['address']           = "218.17.227.197";
+            params['port']              = "9381";
+            cordova.exec(connectFinish, null, "SWVideo", "connectOnAnyChat", [params]);
+        }
+        
+        function login(){
+            
+            var params={};
+            params['action']            = "loginOnAnyChat";
+            params['userName']          = "15505188018";
+<!--            params['passWord']          = "SZadmin898";-->
+            params['passWord']          = "";
+
+            cordova.exec(loginFinish, null, "SWVideo", "loginOnAnyChat", [params]);
+        }
+        
+        function enter(){
+            
+            var params={};
+            params['action']            = "enterRoom";
+            params['roomID']            = "1";
+            params['roomPass']          = "";
+            cordova.exec(enterFinish, null, "SWVideo", "enterRoom", [params]);
+        }
+        
+        function leave(){
+            
+            var params={};
+            params['action']            = "leaveRoom";
+            cordova.exec(leaveFinish, null, "SWVideo", "leaveRoom", [params]);
+        }
+        
+        function connectFinish(result){
+            
+            alert(result["errorMessage"]+"\r\n"+result["errorCode"]);
+            
+        }
+        
+        function loginFinish(result) {
+            
+            alert(result["errorMessage"]+"\r\n"+result["errorCode"]);
+        }
+        
+        function enterFinish(result) {
+            
+             alert(result["errorMessage"]+"\r\n"+result["errorCode"]);
+        }
+        
+        function leaveFinish(result) {
+            
+             alert(result["errorMessage"]+"\r\n"+result["errorCode"]);
+        }
+
+            </script>
+    </body>
+</html>

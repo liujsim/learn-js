@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+    label {
+        cursor: pointer;
+        -webkit-user-select: none;
+        /*  文字选择菜单 */
+        -webkit-tap-highlight-color: rgba(225, 225, 225, .5);
+        -webkit-touch-callout: none/* 系统菜单 */
+    }
+
+    * {
+        outline: none;
+    }
+
+    input:focus,
+    button:focus {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        outline: none;
+        /* 去掉 focus 下 chrome 默认 outline */
+    }
+}
+    </style>
+</head>
+
+<body>
+    <pre> cursor:pointer 在移动端点击时有背景色</pre>
+    <i class="audiotime">4</i>
+    <input type="text" name="" id="">
+    <button>按钮</button>
+    <input type="radio" name="" id="other" value="other">
+    <label for="other">other</label>
+    <a href="http://www.baidu.com">baidu</a>
+</body>
+
+</html>

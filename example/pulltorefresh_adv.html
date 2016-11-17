@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>头尾固定中间高度自适应布局</title>
+    <style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: "PingFangSC-Regular", "San Francisco", "Helvetica Neue", Helvetica, sans-serif;
+        -webkit-overflow-scrolling: touch;
+        font-size: 18px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    *,
+    *::before,
+    *::after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    #header {
+        height: 70px;
+        line-height: 70px;
+        background: #2C97E8;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        text-align: center;
+    }
+
+    #loader {
+        height: 100px;
+        width: 100%;
+        top: 70px;
+        position: absolute;
+        text-align: center;
+    }
+
+    #container {
+        background: #F4F4F6;
+        width: 100%;
+        overflow: scroll;
+        top: 70px;
+        position: absolute;
+        bottom: 70px;
+        transition: top 0.5s ease;
+    }
+
+    #footer {
+        /* height: 70px; */
+        min-height: 70px;
+        background: white;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        text-align: center;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    #footer .row {
+        position: relative;
+        min-height: 70px;
+        max-height: 170px;
+        height: inherit;
+        padding-right: 70px;
+    }
+
+    .x-input {
+        height: inherit;
+        min-height: 70px;
+        max-height: 170px;
+        overflow-y: auto;
+        border: 2px solid #438EFF;
+        outline: none;
+        -webkit-user-modify: read-write-plaintext-only;
+        text-align: left;
+        padding: 0px 5px;
+    }
+
+    button {
+        cursor: pointer;
+        padding: 5px;
+        border: 1px solid #5CC9F5;
+        border-radius: 5px;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        overflow: hidden;
+        outline: none;
+    }
+
+    button.toggle {
+        position: absolute;
+        right: 0px;
+        bottom: 10px;
+        font-size: 16px;
+    }
+    .extend {
+      background: #5CC9F5;
+    }
+    .visible{
+      height:150px
+    }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+    </div>
+    <div id="loader">
+        <span id="loader-notice"> pull-to-refresh </span>
+    </div>
+    <div id="container">
+    </div>
+    <div id="footer">
+        <div class="row">
+            <div class="x-input" contenteditable placeholder="请输入问题"></div>
+            <button class="btn toggle" id="toggle">toggle</button>
+        </div>
+        <div class="extend">
+
+        </div>
+    </div>
+    <script>
+    var el = document.getElementById('container')
+    var touchStart
+    el.addEventListener('touchstart', function() {
+        var touch = event.targetTouches[0];
+        touchStart = touch.pageY;
+    }, false)
+    var touchmove
+    var distance;
+    var loaderNotice = document.querySelector('#loader-notice')
+    var originTop = parseInt((getComputedStyle(el)['top']).replace('px', ''))
+    el.addEventListener('touchmove', function(event) {
+        var touch = event.targetTouches[0];
+        // 把元素放在手指所在的位置
+        touchmove = touch.pageY;
+        if (el.scrollTop == 0) {
+            distance = touchmove - touchStart;
+            if (distance > 0) {
+                event.preventDefault() // 兼容 4.4 非常重要 多次测试
+            }
+            if (distance > 70) { // 假设100是阈值   distance 最大为 100
+                loaderNotice.textContent = "release-to-refresh"
+                event.preventDefault() // 超过阈值后,禁止向下无线滑动
+            } else {
+                el.style.top = originTop + distance + 'px'; // 修改 container
+            }
+        }
+    }, false)
+
+    el.addEventListener('touchend', function(event) {
+        console.log('touchend')
+        if (distance > 70) { // touchend 时是阈值则从后台取数据
+            setTimeout(function() {
+                el.style.top = originTop + 'px' // 可以添加动画效果
+                loaderNotice.textContent = "pull-to-refresh "
+            }, 1500)
+            loaderNotice.textContent = "正在刷新..." // dom 线程
+        } else {
+            el.style.top = originTop + 'px'
+        }
+    }, false)
+    let toggle = document.querySelector('#toggle')
+    let extend = document.querySelector('.extend')
+    toggle.addEventListener('click', function(event) {
+        extend.classList.toggle("visible");
+    }, false)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>press button</title>
+    <style type="text/css">
+    .record-box {
+        width: 100px;
+        height: 30px;
+        border: 1px solid #b3b3b3;
+        line-height: 30px;
+        margin: 10px 0;
+        margin-left: 0.99rem;
+        text-align: center;
+        overflow: hidden;
+        font-size: 15px;
+        user-select: none;
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="recordBox" class="record-box ">
+      <span id="recordText">按住 说话</span>
+    </div>
+    <script type="text/javascript">
+      var start, end
+      var el = document.getElementById('recordBox')
+      el.addEventListener('touchstart', function (event) {
+        console.log('start touch')
+        start = new Date()
+      }, false)
+      el.addEventListener('touchend', function (event) {
+        end = new Date()
+        var time = end - start
+
+        console.log(time)
+        if(time < 1000){
+            alert('太短了')
+        }
+        console.log('stop touch')
+      }, false)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>index</title>
+  <script src="http://libs.useso.com/js/jquery/2.1.1/jquery.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    function jsonFlickrFeed(json) {
+      console.log(json)
+    }
+    var script = document.createElement('script');
+    // script.src = 'http://www.flickr.com/services/feeds/photos_public.gne?format=json&';
+    // script.src = 'https://api.github.com/users/runcelim?callback=jsonFlickrFeed';
+     script.src = 'http://localhost:4567/example.json?callback=jsonFlickrFeed';
+    document.getElementsByTagName('head')[0].appendChild(script)
+    // or document.head.appendChild(script) in modern browsers
+  </script>
+  <script>
+function jsonCallback(json){
+  console.log(json);
+}
+
+$.ajax({
+  url: "http://run.plnkr.co/plunks/v8xyYN64V4nqCshgjKms/data-2.json", // 打开网址查看返回值，这个是专门用于 jsonp 调用的
+  dataType: "jsonp"
+});
+  </script>
+</body>
+</html>

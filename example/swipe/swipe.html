@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>swipe</title>
+    <style type="text/css">
+    .swipe {
+        height: 200px;
+    }
+
+    .swipe-items-wrap {
+        height: 100%;
+        position: relative;
+    }
+
+    .swipe-items-wrap>div {
+        position: absolute;
+        transform: translateX(-100%);
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+    .swipe-items-wrap>div.active {
+        display: block;
+        transform: none;
+    }
+
+    .slide1 {
+        background-color: #0089dc;
+        color: #fff;
+    }
+
+    .slide2 {
+        background-color: #ffd705;
+        color: #000;
+    }
+
+    .slide3 {
+        background-color: #ff2d4b;
+        color: #fff;
+    }
+    .swipe .swipe-item {
+    line-height: 200px;
+    text-align: centers;
+}
+    </style>
+</head>
+
+<body>
+    <div class="swipe">
+        <div class="swipe-items-wrap">
+            <div class="swipe-item slide1 active"> 1 </div>
+            <div class="swipe-item slide2"> 2 </div>
+            <div class="swipe-item slide3"> 3 </div>
+        </div>
+        <div class="swipe-indicators">
+            <div class="swipe-indicator active"></div>
+            <div class="swipe-indicator"></div>
+            <div class="swipe-indicator"></div>
+        </div>
+    </div>
+</body>
+
+</html>

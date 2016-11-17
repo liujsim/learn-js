@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <style>
     button.accordion {
       background-color: #eee;
@@ -34,7 +37,7 @@
     div.panel {
       padding: 0 18px;
       background-color: white;
-      max-height: 0;
+      display: none;
       overflow: hidden;
       transition: 0.6s ease-in-out;
       opacity: 0;
@@ -42,13 +45,34 @@
 
     div.panel.show {
       opacity: 1;
-      max-height: 500px;
+      display: block;
+      /*max-height: 500px;*/
+      animation: fadePanel 0.5s ease-out;
+    }
+    @keyframes fadePanel {
+      0% {
+        display: none;
+        opacity: 0;
+      }
+      1% {
+        display: block;
+        opacity: 0.3;
+      }
+      50% {
+        display: block;
+        opacity: 0.5;
+      }
+      100% {
+        display: block;
+        opacity: 0.9;
+      }
     }
   </style>
 </head>
 <body>
 
 <h2>Accordion with symbols</h2>
+<p>wschool 默认是改变面板的高度控制显示和隐藏,这种方式兼容性不好,故改成 display 控制,缺点:缺少过渡动画</p>
 <p>In this example we have added a "plus" sign to each button. When the user clicks on the button, the "plus" sign is replaced with a "minus" sign.</p>
 <button class="accordion">Section 1</button>
 <div class="panel">

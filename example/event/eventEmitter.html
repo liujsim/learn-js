@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="EventEmitter.js"></script>
+    <script type="text/javascript">
+    function listener1() {
+        // If a condition is met then remove the listener
+        if (completed) {
+            return true;s
+        }
+    }
+    function listener2() {
+        // Always remove after use
+        return true;
+    }
+    ee.addListeners('foo', [listener1, listener2]);
+    ee.emitEvent('foo');
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

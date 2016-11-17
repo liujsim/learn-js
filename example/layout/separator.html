@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>时间分割线</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    .separator {
+      width: 100%;
+      height:auto;
+
+    }
+    .separator .left, .separator .right {
+      float: left;
+      width: 40%;
+      height: 0.4rem;
+      border-bottom: 1px dotted RGBA(131, 131, 131, 1.00);
+    }
+    .separator .middle {
+      /*float: left;*/
+      text-align: center;
+      height: 0.8rem;
+      line-height: 0.8rem;
+      color: #838383;
+      position: absolute;
+      /* min-width: 320px; */
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
 </head>
 <body>
-
+<h3>时间聊天记录   -------  2016-06-22 -------- </h3>
+<pre>需要做到根据屏幕高度自适应</pre>
+<div class="separator">
+  <p class="notice"><span>以上是历史聊天记录</span></p>
+  <div class="left"></div>
+  <div class="middle"><span>06-22 16:43</span></div>
+  <div class="right"></div>
+</div>
 </body>
 </html>
